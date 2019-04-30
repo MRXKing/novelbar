@@ -213,6 +213,18 @@ export default {
     }
   },
   mounted() {
+    Notification.requestPermission().then(function(permission) {
+        if(permission === 'granted'){
+          let notice = new Notification('novelbar',{
+              body: '欢迎来到小说吧!',
+              tag: 'linxin',
+              icon: require('@/assets/logo.png')
+          })
+          setTimeout(()=>{
+            notice.close()
+          },2000)
+        }
+    })
     if (!sessionStorage.token && this.$route.name =="bookIndex") {
       this.$alert('请先登录', '提示', {
         confirmButtonText: '确定',
@@ -256,12 +268,14 @@ export default {
       console.log(key, keyPath);
     },
     goUserInfo(){
-      let {href} = this.$router.resolve({name:'userInfo'})
-      window.open(href,'_blank')
+      // let {href} = this.$router.resolve({name:'userInfo'})
+      // window.open(href,'_blank')
+      this.$router.push({name:'userInfo'})
     },
     alreadyRead(){
-      let {href} = this.$router.resolve({name:'alreadyRead'})
-      window.open(href,'_blank')
+      // let {href} = this.$router.resolve({name:'alreadyRead'})
+      // window.open(href,'_blank')
+      this.$router.push({name:'alreadyRead'})
     },
     goSearch(){
        if (this.$route.name != 'search') {

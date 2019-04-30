@@ -36,8 +36,9 @@ new Vue({
           }
         }).then(res => {
             localStorage.bookTitle = book_name
-            let {href} = this.$router.resolve({name:'bookIndex'})
-            window.open(href,'_brank')
+            // let {href} = this.$router.resolve({name:'bookIndex'})
+            // window.open(href,'_brank')
+            this.$router.push({name:'bookIndex'})
         }).catch(err => {
           sessionStorage.removeItem('token')
           this.stat = false
